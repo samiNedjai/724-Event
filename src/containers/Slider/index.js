@@ -8,13 +8,18 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+  // modifier le sens de l'affichage 
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
   const nextCard = () => {
+    // Ajout une vérification pour s'assurer que byDateDesc n'est pas undefined
+        if (byDateDesc !== undefined) {
     setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+      // Ajout d'un -1
+      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
     );
+    }
   };
   useEffect(() => {
     nextCard();
@@ -25,8 +30,7 @@ const Slider = () => {
         <>
           <div
             key={event.title}
-            className={`SlideCard SlideCard--${
-              index === idx ? "display" : "hide"
+            className={`SlideCard SlideCard--${index === idx ? "display" : "hide"
             }`}
           >
             <img src={event.cover} alt="forum" />
@@ -42,10 +46,11 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`${_.title}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx}
+                  readOnly
                 />
               ))}
             </div>
