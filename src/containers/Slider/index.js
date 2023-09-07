@@ -8,19 +8,20 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-  // modifier le sens de l'affichage 
+  // Modification du sens de tri des événements par date
     new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
   const nextCard = () => {
-    // Ajout une vérification pour s'assurer que byDateDesc n'est pas undefined
+    // Ajout d'une vérification pour s'assurer que byDateDesc n'est pas undefined
         if (byDateDesc !== undefined) {
     setTimeout(
-      // Ajout d'un -1
+      // Ajout d'un -1 pour éviter de dépasser la limite de la longueur du tableau
       () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
       5000
     );
     }
   };
+  // Utilisation de useEffect pour lancer la fonction nextCard lorsque le composant est monté
   useEffect(() => {
     nextCard();
   });
@@ -44,9 +45,10 @@ const Slider = () => {
           </div>
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
+              {/* Boucle à travers chaque élément pour la pagination */}
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${_.title}`}
+                  key={radioIdx !== undefined ? radioIdx : _.title} // Utilisez _.title en cas de valeur non définie
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
