@@ -48,7 +48,7 @@ const Slider = () => {
               {/* Boucle à travers chaque élément pour la pagination */}
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={radioIdx !== undefined ? radioIdx : _.title} // Utilisez _.title en cas de valeur non définie
+                  key={`${_.id}`} // Utilisez _.id 
                   type="radio"
                   name="radio-button"
                   checked={index === radioIdx}
