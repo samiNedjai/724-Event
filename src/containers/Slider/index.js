@@ -28,12 +28,14 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        // maitre le key dans le div globale 
+        <div key={event.title }>
           <div
-            key={event.title}
+            
             className={`SlideCard SlideCard--${index === idx ? "display" : "hide"
             }`}
           >
+
             <img src={event.cover} alt="forum" />
             <div className="SlideCard__descriptionContainer">
               <div className="SlideCard__description">
@@ -57,7 +59,7 @@ const Slider = () => {
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
