@@ -14,7 +14,8 @@ import ModalEvent from "../../containers/ModalEvent";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const { data } = useData()
+  // Obtenez la dernière prestation à partir des données********
+  const { data, error } = useData()
   const last =
     data && data.events && data.events.length > 0
       ? data.events[data.events.length - 1]
@@ -119,22 +120,27 @@ const Page = () => {
       </div>
     </main>
     <footer className="row">
+      {/* Affichez les détails de la dernière prestation****** */}
       <div className="col presta">
-        <h3>Notre derniére prestation</h3>
-       
-        {last && (
-  <Modal Content={<ModalEvent event={last} />}>
-    {({ setIsOpened }) => (
-      <EventCard
-        onClick={() => setIsOpened(true)}
-        imageSrc={last?.cover}
-        title={last?.title}
-        date={new Date(last?.date)}
-        label={last?.type}
-      />
-    )}
-  </Modal>
-        )}
+              <h3>Notre derniére prestation</h3>
+              {/* Utilisez le composant EventCard pour afficher les détails de la prestation ******* */}
+              {last && (
+        <Modal Content={< ModalEvent event={last} />}>
+          {({ setIsOpened }) => (
+            <EventCard
+              onClick={() => setIsOpened(true)}
+              imageSrc={last?.cover}
+              title={last?.title}
+              date={new Date(last?.date)}
+              label={last?.type}
+            />
+          )}
+        </Modal>
+              )}
+    
+          {error && <div>Une erreur est survenue</div>}
+     
+    
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
