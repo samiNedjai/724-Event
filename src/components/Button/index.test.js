@@ -9,7 +9,7 @@ describe("When a button is created", () => {
   });
   it("the button must display a label", () => {
     render(<Button>label</Button>);
-    const buttonElement = screen.getByText(/label/);
+    const buttonElement = screen.getByText("label");
     expect(buttonElement).toBeInTheDocument();
   });
   describe("and it's clicked", () => {

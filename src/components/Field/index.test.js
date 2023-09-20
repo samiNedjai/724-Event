@@ -16,7 +16,7 @@ describe("When a field is created", () => {
 
   it("a label is set with field", () => {
     render(<Field placeholder="field-placeholder" label="field_label" name="test" />);
-    const labelElement = screen.getByText(/field_label/);
+    const labelElement = screen.getByText("field_label");
     expect(labelElement).toBeInTheDocument();
   });
 

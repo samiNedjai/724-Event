@@ -21,8 +21,8 @@ describe("When a people card is created", () => {
         position="test position"
       />
     );
-    const nameElement = screen.getByText(/test name/);
-    const titleElement = screen.getByText(/test position/);
+    const nameElement = screen.getByText("test name");
+    const titleElement = screen.getByText("test position");
     expect(nameElement).toBeInTheDocument();
     expect(titleElement).toBeInTheDocument();
   });

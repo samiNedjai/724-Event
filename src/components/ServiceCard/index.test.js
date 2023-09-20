@@ -16,7 +16,7 @@ describe("When a service card is created", () => {
         This is the card content
       </ServiceCard>
     );
-    const contentElement = screen.getByText(/This is the card content/);
+    const contentElement = screen.getByText("This is the card content");
     expect(contentElement).toBeInTheDocument();
   });
 });
